@@ -1,0 +1,82 @@
+We need the user to be able to have longer sessions in the app without the requirement of refreshing for ne token generation or
+logging in repeatedly to regenerate the token to get authenticated to use the application
+
+How It All Works Together
+
+Initial Login:
+
+User logs in and receives both access token (short-lived) and refresh token (long-lived)
+Access token is used for API calls
+Refresh token is stored securely for future token refresh
+
+
+During Normal Usage:
+
+Access token is automatically attached to all API requests
+User interacts with the application normally
+
+
+When Access Token Expires:
+
+API returns 401 Unauthorized
+Client intercepts this response
+Client uses refresh token to get a new access token
+Original request is retried with new access token
+User experiences no interruption
+
+
+Long-Term Session Management:
+
+Refresh tokens last much longer (30 days in our implementation)
+User maintains session across app restarts and browser sessions
+Session only expires after 30 days of complete inactivity
+
+
+Additional Security:
+
+Sessions time out after extended inactivity (with SessionTimeoutHandler)
+Refresh tokens are stored in database and can be revoked
+Each login generates a new refresh token, invalidating old ones
+
+
+
+This implementation provides a seamless user experience while maintaining security:
+
+Users don't have to log in frequently
+Sessions persist across browser restarts
+API calls are automatically authenticated
+Token refresh happens in the background
+
+{
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJXb2x2ZXJpbmUiLCJpYXQiOjE3NDUyNDc3MjcsImV4cCI6MTc0NTI1MTMyN30.cItEt-NYfYSzhVNqkJTnbKG5Vzd7uoJkfv5FnP2Ozak9OH3GivmtDB5MZU-BCSgzeYHtoWNTfHkH7hmZOb7DVg",
+    "refreshToken": "a8f41a98-6dd9-47e4-bd57-fedac9a1f887",
+    "tokenType": "Bearer",
+    "username": "Wolverine"
+}
+
+{
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJEZWFkcG9vbCIsImlhdCI6MTc0NTI0Nzc2NywiZXhwIjoxNzQ1MjUxMzY3fQ.VD17lP6wk3Tghpg7Twtvwgg3Nw2EDD6k73x5PTZ8QlMsaYcJMqNg8a8ToGp-1mmRn-9zKeJYnyS7oDKlupRIbg",
+    "refreshToken": "9648824e-8d5c-4c54-baa9-c14ed5557c66",
+    "tokenType": "Bearer",
+    "username": "Deadpool"
+}
+
+{
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJEZWFkcG9vbCIsImlhdCI6MTc0NTI0OTkyNiwiZXhwIjoxNzQ1MjUzNTI2fQ.4hqOjs2syFWgGVqjlVQTXkkYPmHznr2D6vTDYlDehuiI7V0TdjyCjvmaqb9OSxVTJjU3_gDbTQVK19vOwRLl8w",
+    "refreshToken": "9648824e-8d5c-4c54-baa9-c14ed5557c66",
+    "tokenType": "Bearer",
+    "username": "Deadpool"
+}
+
+#Updated
+{
+    "success": true,
+    "message": "Login successful",
+    "data": {
+        "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJXb2x2ZXJpbmUiLCJpYXQiOjE3NDUzODg2NDcsImV4cCI6MTc0NTM5MjI0N30.RZAseAJSEcO5_xti7uPg5DTy3lmbLnr6uKpY7G8beSDpR94yRpVQM-FWxulJSQ6Ogxy1GwwHdKDPpZ6HbDodJg",
+        "refreshToken": "210f17ea-4f36-4a07-9c83-f628daeefb64",
+        "tokenType": "Bearer",
+        "username": "Wolverine"
+    },
+    "errors": []
+}

@@ -1,0 +1,77 @@
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJEZWFkcG9vbCIsImlhdCI6MTc0NTE3MTQ0MiwiZXhwIjoxNzQ1MTc1MDQyfQ.Co0-2SsiwOICN3_zN2WijAOeaWnQ8-FL1PJfepijiILzMoDfVQeDCkAUylb9lOt78DPs93c-pH88prLJ-2Qpcw",
+    "username": "Deadpool"
+}
+
+[
+    {
+        "id": 1,
+        "title": "My First Note",
+        "content": "Testing my notes app",
+        "user": {
+            "id": 1,
+            "username": "Deadpool",
+            "password": "$2a$10$FaEI0SWDZRyTS0edMAREMeRBFl92HeSPKeSzYPXf6Okz3eRW4iXIS"
+        },
+        "createdAt": "2025-04-14T18:51:30.534163",
+        "updatedAt": "2025-04-14T18:51:30.534163"
+    },
+    {
+        "id": 2,
+        "title": "Let's make updates",
+        "content": "Upgrading my notes app",
+        "user": {
+            "id": 1,
+            "username": "Deadpool",
+            "password": "$2a$10$FaEI0SWDZRyTS0edMAREMeRBFl92HeSPKeSzYPXf6Okz3eRW4iXIS"
+        },
+        "createdAt": "2025-04-20T18:40:21.105897",
+        "updatedAt": "2025-04-20T18:40:21.105897"
+    }
+]
+
+#Header.Payload.Signature
+
+#HEADER-typically consists of two parts: the type of the token, which is JWT, and the signing algorithm being used, such as HMAC SHA256 or RSA.
+
+{
+  "alg": "HS512"
+}
+
+#PAYLOAD-contains the claims. Claims are statements about an entity (typically, the user) and additional data. There are three types of claims: registered, public, and private claims.
+
+{
+  "sub": "Deadpool",
+  "iat": 1744636624,
+  "exp": 1744640224
+}
+
+
+#SIGNATURE-To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.
+           The signature is used to verify the message wasn't changed along the way, and, in the case of tokens signed with a private key, it can also verify that the sender of the JWT is who it says it is.
+
+
+
+
+https://jwt.io/
+
+
+The output is three Base64-URL strings separated by dots that can be easily passed in HTML and HTTP environments, while being more compact when compared to XML-based standards such as SAML.
+
+JSON Web Token (JWT) validation and verification are crucial for security, but they address slightly different aspects of JWT security: validation ensures the token is well-formed and contains enforceable claims; verification ensures the token is genuine and unmodified.
+
+JWT validation generally refers to checking the structure, format, and content of the JWT:
+
+Structure: Ensuring the token has the standard three parts (header, payload, signature) separated by dots.
+Format: Verifying that each part is correctly encoded (Base64URL) and that the payload contains expected claims.
+Content: Checking if the claims within the payload are correct, such as expiration time (exp), issued at (iat), not before (nbf), among others, to ensure the token isn't expired, isn't used before its time, etc.
+
+JWT verification, on the other hand, involves confirming the authenticity and integrity of the token:
+
+Signature Verification: This is the primary aspect of verification where the signature part of the JWT is checked against the header and payload. This is done using the algorithm specified in the header (like HMAC, RSA, or ECDSA) with a secret key or public key. If the signature doesn't match what's expected, the token might have been tampered with or is not from a trusted source.
+Issuer Verification: Checking if the iss claim matches an expected issuer.
+Audience Check: Ensuring the aud claim matches the expected audience.
+
+You validate a JWT to make sure the token makes sense, adheres to the expected standards, contains the right data.
+
+You verify a JWT to make sure the token hasn't been altered maliciously and comes from a trusted source.
