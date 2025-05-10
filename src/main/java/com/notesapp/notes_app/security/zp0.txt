@@ -48,35 +48,46 @@ API calls are automatically authenticated
 Token refresh happens in the background
 
 {
-    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJXb2x2ZXJpbmUiLCJpYXQiOjE3NDUyNDc3MjcsImV4cCI6MTc0NTI1MTMyN30.cItEt-NYfYSzhVNqkJTnbKG5Vzd7uoJkfv5FnP2Ozak9OH3GivmtDB5MZU-BCSgzeYHtoWNTfHkH7hmZOb7DVg",
-    "refreshToken": "a8f41a98-6dd9-47e4-bd57-fedac9a1f887",
-    "tokenType": "Bearer",
-    "username": "Wolverine"
-}
-
-{
-    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJEZWFkcG9vbCIsImlhdCI6MTc0NTI0Nzc2NywiZXhwIjoxNzQ1MjUxMzY3fQ.VD17lP6wk3Tghpg7Twtvwgg3Nw2EDD6k73x5PTZ8QlMsaYcJMqNg8a8ToGp-1mmRn-9zKeJYnyS7oDKlupRIbg",
-    "refreshToken": "9648824e-8d5c-4c54-baa9-c14ed5557c66",
-    "tokenType": "Bearer",
-    "username": "Deadpool"
-}
-
-{
-    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJEZWFkcG9vbCIsImlhdCI6MTc0NTI0OTkyNiwiZXhwIjoxNzQ1MjUzNTI2fQ.4hqOjs2syFWgGVqjlVQTXkkYPmHznr2D6vTDYlDehuiI7V0TdjyCjvmaqb9OSxVTJjU3_gDbTQVK19vOwRLl8w",
-    "refreshToken": "9648824e-8d5c-4c54-baa9-c14ed5557c66",
-    "tokenType": "Bearer",
-    "username": "Deadpool"
-}
-
-#Updated
-{
     "success": true,
     "message": "Login successful",
     "data": {
-        "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJXb2x2ZXJpbmUiLCJpYXQiOjE3NDUzODg2NDcsImV4cCI6MTc0NTM5MjI0N30.RZAseAJSEcO5_xti7uPg5DTy3lmbLnr6uKpY7G8beSDpR94yRpVQM-FWxulJSQ6Ogxy1GwwHdKDPpZ6HbDodJg",
-        "refreshToken": "210f17ea-4f36-4a07-9c83-f628daeefb64",
+        "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJXb2x2ZXJpbmUiLCJpYXQiOjE3NDY4OTE1MzQsImV4cCI6MTc0NjkwNTkzNH0.I32aY3tc6YQGvfWkmd6dMp4E7DBXGaIOciGZrIgI8KZNdyEndnIPXSTm4x8TeklI5uPyqoAFs4bA0KusPYTbyw",
+        "refreshToken": "72dc7189-8c77-47eb-b432-b76c071c5979",
         "tokenType": "Bearer",
         "username": "Wolverine"
+    },
+    "errors": []
+}
+
+{
+    "success": true,
+    "message": "Folder created successfully",
+    "data": {
+        "id": 1,
+        "name": "Test Folder",
+        "parentFolderId": null,
+        "parentFolderName": null,
+        "createdAt": "2025-05-10T13:51:53.0010321",
+        "updatedAt": "2025-05-10T13:51:53.0010321",
+        "subfolders": [],
+        "notes": []
+    },
+    "errors": []
+}
+
+
+{
+    "success": true,
+    "message": "Folder created successfully",
+    "data": {
+        "id": 2,
+        "name": "Test Subfolder",
+        "parentFolderId": null,
+        "parentFolderName": null,
+        "createdAt": "2025-05-10T13:57:33.1167292",
+        "updatedAt": "2025-05-10T13:57:33.1167292",
+        "subfolders": [],
+        "notes": []
     },
     "errors": []
 }

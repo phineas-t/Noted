@@ -2,29 +2,31 @@ package com.notesapp.notes_app.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+// New model for folders
 @Entity
-@Table(name = "notes")
+@Table(name = "folders")
 @Data
-public class Note {
+public class Folder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String title;
+    private String name;
 
-    @Column(columnDefinition = "TEXT")
-    private String content;
+    @ManyToOne
+    @JoinColumn(name = "parent_folder_id")
+    private Folder parentFolder;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "folder_id")
-    private Folder folder;
+    @OneToMany(mappedBy = "folder", cascade = CascadeType.ALL)
+    private List<Note> notes;
 
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();

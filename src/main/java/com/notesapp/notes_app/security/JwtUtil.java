@@ -16,7 +16,7 @@ public class JwtUtil {
 
     // Generate a secure key for HS512 algorithm (must be at least 512 bits / 64 bytes)
     private final SecretKey key = Jwts.SIG.HS512.key().build();
-    private final long accessTokenExpiration = 1000 * 60 * 60;  // token expires in 1 hour
+    private final long accessTokenExpiration = 1000 * 60 * 60 * 4;  // token expires in 4 hours
 
     public String generateToken(String username) {
         // Create a new JWT with the username as the subject
